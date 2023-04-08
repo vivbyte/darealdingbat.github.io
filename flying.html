@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Unpauseable Video Example</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      
+      #unpauseable-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+      }
+      
+      .window {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background-image: url(your-image.jpg);
+        background-size: cover;
+        animation-name: fly;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      
+      @keyframes fly {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(100px, 0);
+        }
+        50% {
+          transform: translate(100px, 100px);
+        }
+        75% {
+          transform: translate(0, 100px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <video id="unpauseable-video" autoplay loop>
+      <source src="your-video.mp4" type="video/mp4">
+      <source src="your-video.webm" type="video/webm">
+      <source src="your-video.ogg" type="video/ogg">
+      Your browser does not support the video tag.
+    </video>
+
+    <script>
+      const videoElement = document.getElementById('unpauseable-video');
+
+      // Disable the video controls
+      videoElement.controls = false;
+
+      // Listen for the 'pause' event and immediately play the video again
+      videoElement.addEventListener('pause', () => {
+        videoElement.play();
+      });
+
+      // Open a random number of small windows with images and scatter them across the screen
+      const numWindows = Math.floor(Math.random() * 5) + 1; // Generate a random number between 1 and 5
+      for (let i = 0; i < numWindows; i++) {
+        const x = Math.floor(Math.random() * (window.innerWidth - 200)); // Generate a random x-coordinate
+        const y = Math.floor(Math.random() * (window.innerHeight - 200)); // Generate a random y-coordinate
+        const newWindow = window.open('', '', `left=${x},top=${y},width=200,height=200`);
+        newWindow.document.write(`<div class="window"></div>`);
+        newWindow.document.body.style.backgroundColor = 'transparent'; // Make the window background transparent
+        newWindow.focus();
+      }
+    </script>
+  </body>
+</html>
