@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>goofy.mp4</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      #unpauseable-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="unpauseable-video" autoplay loop muted playsinline>
+      <source src="goofy.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <script>
+      const videoElement = document.getElementById('unpauseable-video');
+
+      // Disable the video controls
+      videoElement.controls = false;
+
+      // Listen for a user interaction and start playing the video
+      document.addEventListener('click', () => {
+        videoElement.play();
+      });
+    </script>
+  </body>
+</html>
