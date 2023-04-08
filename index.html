@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>goofy.mp4</title>
+    <title>Unpauseable Video Example</title>
     <style>
       html, body {
         margin: 0;
@@ -20,7 +20,7 @@
     </style>
   </head>
   <body>
-    <video id="unpauseable-video" autoplay loop muted playsinline>
+    <video id="unpauseable-video" autoplay loop>
       <source src="goofy.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -31,10 +31,17 @@
       // Disable the video controls
       videoElement.controls = false;
 
-      // Listen for a user interaction and start playing the video
-      document.addEventListener('click', () => {
+      // Listen for the 'pause' event and immediately play the video again
+      videoElement.addEventListener('pause', () => {
         videoElement.play();
       });
+
+      // Open a random number of small windows with images
+      const numWindows = Math.floor(Math.random() * 10) + 30; // Generate a random number between 10 and 30
+      for (let i = 0; i < numWindows; i++) {
+        const newWindow = window.open('boykisser.jpg', '', 'width=200,height=200');
+        newWindow.focus();
+      }
     </script>
   </body>
 </html>
